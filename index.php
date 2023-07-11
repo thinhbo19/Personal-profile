@@ -1,20 +1,32 @@
 <?php 
-$connect = mysqli_connect('localhost','root','','contact_db') or die('connection failed');
+// $connect = mysqli_connect('localhost','root','','contact_db') or die('connection failed');
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "contact_db";
+// Create connection
+$conn = new mysqli($servername, $username, $password, $database);
+
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
 
 if(isset($_POST['send'])){
-    $name = mysqli_real_escape_string($connect, $_POST['name']);
-    $email = mysqli_real_escape_string($connect, $_POST['email']);
-    $number = mysqli_real_escape_string($connect, $_POST['number']);
-    $msg = mysqli_real_escape_string($connect, $_POST['message']);
+    $name = mysqli_real_escape_string($conn, $_POST['name']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $number = mysqli_real_escape_string($conn, $_POST['number']);
+    $msg = mysqli_real_escape_string($conn, $_POST['message']);
 
 
-    $select_message = mysqli_query($connect, "SELECT * FROM `contact_form` WHERE name = '$name' AND email = '$email' AND number = '$number' AND message ='$msg'") or die('query failed');
+    $select_message = mysqli_query($conn, "SELECT * FROM `contact_form` WHERE name = '$name' AND email = '$email' AND number = '$number' AND message ='$msg'") or die('query failed');
 
 
     if(mysqli_num_rows($select_message) > 0){
         
     } else{
-        mysqli_query($connect, "INSERT INTO `contact_form` (name,email,number,message) VALUES ('$name','$email','$number','$msg')") or die('query failed');
+        mysqli_query($conn, "INSERT INTO `contact_form` (name,email,number,message) VALUES ('$name','$email','$number','$msg')") or die('query failed');
         $message[] = 'message sent successfully!';
     }
 }
@@ -177,25 +189,29 @@ if(isset($_POST['send'])){
                     <div class="box" data-aos="fade-up-right">
                         <span>( 2019 - 2020 )</span>
                         <h3>Web Dev</h3>
-                        <p>saddddddddddddddddddddddddddddddddddddddddsdasdsadasdsadasdasdasdasdsadsd</p>
+                        <p>I am a third year information technology student of Ho Chi Minh City University of Education.
+                        </p>
                     </div>
 
                     <div class="box" data-aos="fade-up-right">
                         <span>( 2019 - 2020 )</span>
                         <h3>Web Dev</h3>
-                        <p>saddddddddddddddddddddddddddddddddddddddddsdasdsadasdsadasdasdasdasdsadsd</p>
+                        <p>I am a third year information technology student of Ho Chi Minh City University of Education.
+                        </p>
                     </div>
 
                     <div class="box" data-aos="fade-up-right" data-aos="fade-up-right">
                         <span>( 2019 - 2020 )</span>
                         <h3>Web Dev</h3>
-                        <p>saddddddddddddddddddddddddddddddddddddddddsdasdsadasdsadasdasdasdasdsadsd</p>
+                        <p>I am a third year information technology student of Ho Chi Minh City University of Education.
+                        </p>
                     </div>
 
                     <div class="box" data-aos="fade-up-right" data-aos="fade-up-right">
                         <span>( 2019 - 2020 )</span>
                         <h3>Web Dev</h3>
-                        <p>saddddddddddddddddddddddddddddddddddddddddsdasdsadasdsadasdasdasdasdsadsd</p>
+                        <p>I am a third year information technology student of Ho Chi Minh City University of Education.
+                        </p>
                     </div>
 
                 </div>
@@ -207,25 +223,29 @@ if(isset($_POST['send'])){
                     <div class="box" data-aos="fade-up-left">
                         <span>( 2019 - 2020 )</span>
                         <h3>Web Dev</h3>
-                        <p>saddddddddddddddddddddddddddddddddddddddddsdasdsadasdsadasdasdasdasdsadsd</p>
+                        <p>I am a third year information technology student of Ho Chi Minh City University of Education.
+                        </p>
                     </div>
 
                     <div class="box" data-aos="fade-up-left">
                         <span>( 2019 - 2020 )</span>
                         <h3>Web Dev</h3>
-                        <p>saddddddddddddddddddddddddddddddddddddddddsdasdsadasdsadasdasdasdasdsadsd</p>
+                        <p>I am a third year information technology student of Ho Chi Minh City University of Education.
+                        </p>
                     </div>
 
                     <div class="box" data-aos="fade-up-left">
                         <span>( 2019 - 2020 )</span>
                         <h3>Web Dev</h3>
-                        <p>saddddddddddddddddddddddddddddddddddddddddsdasdsadasdsadasdasdasdasdsadsd</p>
+                        <p>I am a third year information technology student of Ho Chi Minh City University of Education.
+                        </p>
                     </div>
 
                     <div class="box" data-aos="fade-up-left">
                         <span>( 2019 - 2020 )</span>
                         <h3>Web Dev</h3>
-                        <p>saddddddddddddddddddddddddddddddddddddddddsdasdsadasdsadasdasdasdasdsadsd</p>
+                        <p>I am a third year information technology student of Ho Chi Minh City University of Education.
+                        </p>
                     </div>
                 </div>
             </div>
