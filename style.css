@@ -181,7 +181,7 @@ section {
   padding: 0.4rem 0.4rem;
   cursor: pointer;
   color: #000;
-  border: 5px solid black;
+  border: 2px solid black;
   border-radius: 50%;
   width: 3rem;
   height: 3rem;
@@ -358,10 +358,11 @@ section {
 .interest .box-container .box {
   padding: 3rem 2rem;
   border: 5px solid black;
+  margin-top: 30px;
 }
 
 .interest .box-container .box i {
-  font-size: 4rem;
+  font-size: 4rem;  
   margin-bottom: 2rem;
 }
 
@@ -370,6 +371,7 @@ section {
   font-size: 2rem;
   padding: 1.5rem;
   font-weight: normal;
+  border-radius: 10px;
 }
 
 .interest .box-container .box p {
@@ -416,6 +418,8 @@ section {
 .portfolio .box-container .box:hover {
   opacity: 1;
 }
+
+
 
 .contact form {
   max-width: 70rem;
@@ -488,6 +492,48 @@ section {
 .credit span {
   color: #4d5bf9;
 }
+
+footer {
+  background-color: #423f3f;
+  padding: 20px 0;
+  text-align: center;
+}
+
+footer p {
+  margin: 0;
+  color: #fff;
+}
+
+.social-media {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.social-media li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.social-media li a {
+  color: #ffffff;
+  font-size: 20px;
+  transition: color 0.3s ease;
+}
+
+.social-media li a:hover {
+  color: #007bff;
+}
+
+
+
+
+
+
+
+
+
+
 
 @media (max-width: 991px) {
   html {

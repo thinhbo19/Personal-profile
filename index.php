@@ -1,4 +1,4 @@
-<?php 
+<?php
 // $connect = mysqli_connect('localhost','root','','contact_db') or die('connection failed');
 
 $servername = "localhost";
@@ -10,10 +10,10 @@ $conn = new mysqli($servername, $username, $password, $database);
 
 // Check connection
 if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
+    die("Connection failed: " . $conn->connect_error);
 }
 
-if(isset($_POST['send'])){
+if (isset($_POST['send'])) {
     $name = mysqli_real_escape_string($conn, $_POST['name']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $number = mysqli_real_escape_string($conn, $_POST['number']);
@@ -23,9 +23,8 @@ if(isset($_POST['send'])){
     $select_message = mysqli_query($conn, "SELECT * FROM `contact_form` WHERE name = '$name' AND email = '$email' AND number = '$number' AND message ='$msg'") or die('query failed');
 
 
-    if(mysqli_num_rows($select_message) > 0){
-        
-    } else{
+    if (mysqli_num_rows($select_message) > 0) {
+    } else {
         mysqli_query($conn, "INSERT INTO `contact_form` (name,email,number,message) VALUES ('$name','$email','$number','$msg')") or die('query failed');
         $message[] = 'message sent successfully!';
     }
@@ -57,12 +56,12 @@ if(isset($_POST['send'])){
         $lastMessage = end($message);
         echo '
             <div class="message">
-                <span>'.$lastMessage.'</span>
+                <span>' . $lastMessage . '</span>
                 <i class="fa-solid fa-xmark" onclick="this.parentElement.remove();"></i>
             </div>      
         ';
     }
-?>
+    ?>
 
 
     <header class="header">
@@ -260,7 +259,7 @@ if(isset($_POST['send'])){
 
             <div class="box" data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="2000">
                 <i class="fas fa-code"></i>
-                <h3 style="background-color: red;">Web development</h3>
+                <h3 style="background-color: rgb(99, 100, 99);">League of Legends</h3>
             </div>
 
             <div class="box" data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="2000">
@@ -383,15 +382,34 @@ if(isset($_POST['send'])){
 
     </section>
 
-    <div class="credit"> <?php echo date('Y');?> </div>
+
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; <?php echo date('Y'); ?> HungThinh</p>
+                </div>
+                <div class="col-md-6">
+                    <ul class="social-media">
+                        <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
 
     <script src="script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
-    AOS.init({
-        duration: 800,
-        delay: 300
-    })
+        AOS.init({
+            duration: 800,
+            delay: 300
+        })
     </script>
 </body>
 
