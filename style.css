@@ -129,6 +129,7 @@ section {
   box-sizing: initial;
   display: flex;
   align-items: center;
+  justify-content: center;
   transition: 0.5s;
 }
 
@@ -138,18 +139,23 @@ section {
 .header .navbar ul li {
   list-style: none;
   width: 100%;
-  height: 80px;
+  height: 60px;
+  display: flex;
+  align-items: center;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
+  margin: 0 0 20px 0;
 }
 .header .navbar ul li.active {
   background: black;
   width: 106.5%;
+  display: flex;
+  align-items: center;
 }
 
 .header .navbar ul li a {
   display: block;
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   padding: 2.5rem;
   margin: 1.2rem;
   display: flex;
@@ -362,7 +368,7 @@ section {
 }
 
 .interest .box-container .box i {
-  font-size: 4rem;  
+  font-size: 4rem;
   margin-bottom: 2rem;
 }
 
@@ -418,8 +424,6 @@ section {
 .portfolio .box-container .box:hover {
   opacity: 1;
 }
-
-
 
 .contact form {
   max-width: 70rem;
@@ -525,15 +529,174 @@ footer p {
   color: #007bff;
 }
 
+.secLogin {
+  position: absolute;
+  top: 20%;
+  left: 35%;
+  width: 400px;
+  height: 440px;
+  background: rgb(149, 148, 148);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  overflow: hidden;
+  z-index: 9999;
+  transform: scale(0);
+  transition: height 0.3s ease, transform 0.5s ease;
+}
+.secLogin.active{
+  transform: scale(1);
+}
+
+.secLogin .form-box {
+  position: absolute;
+  width: 100%;
+  padding: 40px;
+}
+
+.secLogin .form-box.login{
+  transition: transform 0.18s ease;
+  transform: translateX(0px);
+}
+.secLogin.active-login .form-box.login{
+  transition: transform 0.18s ease;
+  transform: translateX(-600px);
+}
+.secLogin .form-box.register{
+  transition: transform 0.18s ease;
+  transform: translateX(-600px);
+}
+.secLogin.active-login .form-box.register{
+  transition: transform 0.18s ease;
+  transform: translateX(0);
+}
 
 
+.secLogin.active-forgot .form-box.login{
+  transition: transform 0.18s ease;
+  transform: translateX(-600px);
+}
+.secLogin .form-box.forgot-password-form{
+  transition: transform 0.18s ease;
+  transform: translateX(-600px);
+}
+.secLogin.active-forgot .form-box.forgot-password-form{
+  transition: transform 0.18s ease;
+  transform: translateX(0);
+}
 
+.secLogin .icon-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 45px;
+  height: 45px;
+  font-size: 2em;
+  background: #838385;
+  border-bottom-left-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  cursor: pointer;
+  z-index: 100;
+}
 
+.form-box h2 {
+  font-size: 3em;
+  color: #fff;
+  text-align: center;
+}
+.input-box {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  border-bottom: 2px solid #fff;
+  margin: 30px 0;
+}
+.input-box label {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1em;
+  color: #fff;
+  font-weight: bold;
+  pointer-events: none;
+  transition: 0.6s;
+}
+.input-box input:focus ~ label,
+.input-box input:valid ~ label {
+  top: -5px;
+}
+.input-box input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-weight: 600;
+}
 
+.input-box .icon {
+  position: absolute;
+  right: 0;
+  line-height: 57px;
+  font-size: 1.2rem;
+  color: #fff;
+}
 
+.remember-forgot {
+  font-size: 0.9em;
+  color: #fff;
+  margin: -15px 0 15px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+}
 
+.remember-forgot a {
+  color: #142251;
+  font-weight: 600;
+  text-decoration: none;
+}
+.remember-forgot a:hover {
+  text-decoration: underline;
+}
+.btn-login {
+  width: 50%;
+  height: 50px;
+  border: unset;
+  border-radius: 15px;
+  color: #212121;
+  z-index: 1;
+  background: #e8e8e8;
+  font-weight: 1000;
+  font-size: 17px;
+  transition: all 250ms;
+  z-index: 100;
+  cursor: pointer;
+  overflow: hidden;
+}
+.login-register {
+  margin: 25px 0 10px;
+  text-align: center;
+  color: #fff;
+}
 
-
+.login-register a {
+  color: #142251;
+  font-weight: 600;
+  text-decoration: none;
+}
+.login-register a:hover {
+  text-decoration: underline;
+}
 
 @media (max-width: 991px) {
   html {
