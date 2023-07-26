@@ -34,70 +34,70 @@ if (isset($_POST['send'])) {
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (isset($_POST["login"])) {
-      // Xử lý đăng nhập
-      $Email = $_POST["email"];
-      $Password = $_POST["password"];
-  
-      $query = "SELECT * FROM users WHERE email = '$Email'";
-      $result = mysqli_query($conn, $query);
-  
-      if (mysqli_num_rows($result) > 0) {
-        $user = mysqli_fetch_assoc($result);
-        if (password_verify($Password, $user['password'])) {
-          // Mật khẩu hợp lệ, đăng nhập thành công
-          $_SESSION['user_id'] = $user['ID'];
-          // echo "Đăng nhập thành công!";
-          // header("Location: dashboard.php");
+        // Xử lý đăng nhập
+        $Email = $_POST["email"];
+        $Password = $_POST["password"];
+
+        $query = "SELECT * FROM users WHERE email = '$Email'";
+        $result = mysqli_query($conn, $query);
+
+        if (mysqli_num_rows($result) > 0) {
+            $user = mysqli_fetch_assoc($result);
+            if (password_verify($Password, $user['password'])) {
+                // Mật khẩu hợp lệ, đăng nhập thành công
+                $_SESSION['user_id'] = $user['ID'];
+                // echo "Đăng nhập thành công!";
+                // header("Location: dashboard.php");
+            } else {
+                echo "<script> alert('Mật khẩu không đúng. Vui lòng thử lại.') </script>";
+            }
         } else {
-          echo "Mật khẩu không đúng. Vui lòng thử lại.";
+            echo " <script> alert('Tài khoản không tồn tại. Vui lòng đăng ký trước.') </script>";
         }
-      } else {
-        echo "Tài khoản không tồn tại. Vui lòng đăng ký trước.";
-      }
     } elseif (isset($_POST["signup"])) {
-      // Xử lý đăng ký
-      $Username = $_POST["username"];
-      $Email = $_POST["email"];
-      $Password = $_POST["password"];
-  
-      $query = "SELECT * FROM users WHERE email = '$Email'";
-      $result = mysqli_query($conn, $query);
-  
-      if (mysqli_num_rows($result) > 0) {
-        // Email đã tồn tại trong cơ sở dữ liệu
-        echo "Email đã được sử dụng. Vui lòng chọn email khác.";
-      } else {
-        // Thêm thông tin người dùng vào cơ sở dữ liệu
-        $hashedPassword = password_hash($Password, PASSWORD_DEFAULT); // Hash password để lưu vào cơ sở dữ liệu
-        $insertQuery = "INSERT INTO users (name, email, password) VALUES ('$Username', '$Email', '$hashedPassword')";
-  
-        if (mysqli_query($conn, $insertQuery)) {
-          echo "Đăng ký thành công!";
-          // header("Location: login.php");
+        // Xử lý đăng ký
+        $Username = $_POST["username"];
+        $Email = $_POST["email"];
+        $Password = $_POST["password"];
+
+        $query = "SELECT * FROM users WHERE email = '$Email'";
+        $result = mysqli_query($conn, $query);
+
+        if (mysqli_num_rows($result) > 0) {
+            // Email đã tồn tại trong cơ sở dữ liệu
+            echo "<script> alert('Email đã được sử dụng. Vui lòng chọn email khác.') </script>";
         } else {
-          echo "Đã xảy ra lỗi khi thực hiện đăng ký: " . mysqli_error($conn);
+            // Thêm thông tin người dùng vào cơ sở dữ liệu
+            $hashedPassword = password_hash($Password, PASSWORD_DEFAULT); // Hash password để lưu vào cơ sở dữ liệu
+            $insertQuery = "INSERT INTO users (name, email, password) VALUES ('$Username', '$Email', '$hashedPassword')";
+
+            if (mysqli_query($conn, $insertQuery)) {
+                  echo "<script>alert('Đăng ký thành công!')</script>";
+                // header("Location: login.php");
+            } else {
+                echo "<script>alert('Đã xảy ra lỗi khi thực hiện đăng ký: ')</script>" . mysqli_error($conn);
+            }
         }
-      }
     }
-  }
-  
-  // Xử lý yêu cầu đặt lại mật khẩu
-  if (isset($_POST["forgot_password"])) {
+}
+
+// Xử lý yêu cầu đặt lại mật khẩu
+if (isset($_POST["forgot_password"])) {
     $ForgotEmail = $_POST["forgot_email"];
-  
+
     $query = "SELECT * FROM users WHERE email = '$ForgotEmail'";
     $result = mysqli_query($conn, $query);
-  
+
     if (mysqli_num_rows($result) > 0) {
-      // Tìm thấy email trong cơ sở dữ liệu, gửi email đặt lại mật khẩu ở đây nếu muốn
-      echo "Chúng tôi đã gửi một email đặt lại mật khẩu cho bạn.";
+        // Tìm thấy email trong cơ sở dữ liệu, gửi email đặt lại mật khẩu ở đây nếu muốn
+        echo "<script>alert('Chúng tôi đã gửi một email đặt lại mật khẩu cho bạn.')</script>";
     } else {
-      echo "Email không tồn tại trong hệ thống. Vui lòng kiểm tra lại.";
+        echo "<script>alert('Email không tồn tại trong hệ thống. Vui lòng kiểm tra lại.')</script>";
     }
-  }
-  
-  
-  mysqli_close($conn);
+}
+
+
+mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>
@@ -116,16 +116,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <body>
     <!-- <?php
-    if (isset($message) && !empty($message)) {
-        $lastMessage = end($message);
-        echo '
+            if (isset($message) && !empty($message)) {
+                $lastMessage = end($message);
+                echo '
             <div class="message">
                 <span>' . $lastMessage . '</span>
                 <i class="fa-solid fa-xmark" onclick="this.parentElement.remove();"></i>
             </div>      
         ';
-    }
-    ?> -->
+            }
+            ?> -->
 
     <header class="header">
         <div id="menu-btn" class="fas fa-bars"></div>
