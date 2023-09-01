@@ -83,3 +83,4 @@ forgot.addEventListener("click", () => {
 back.addEventListener("click", () => {
   secLogin.classList.remove("active-forgot");
 });
+

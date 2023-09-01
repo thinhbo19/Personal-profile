@@ -529,7 +529,7 @@ footer p {
   color: #007bff;
 }
 
-.secLogin {
+body .secLogin {
   position: absolute;
   top: 20%;
   left: 35%;

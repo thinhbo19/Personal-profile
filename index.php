@@ -1,28 +1,31 @@
 <?php
 // $connect = mysqli_connect('localhost','root','','contact_db') or die('connection failed');
-
 $servername = "localhost";
 $username = "root";
 $password = "";
 $database = "contact_db";
+
+// //000webhost
+// $servername = "localhost";
+// $username = "id20651842_hungthinh1903";
+// $password = "19032003@Th";
+// $database = "id20651842_contact_form";
+
 // Create connection
 $conn = new mysqli($servername, $username, $password, $database);
+
+session_start();
 
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
 if (isset($_POST['send'])) {
     $name = mysqli_real_escape_string($conn, $_POST['name']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $number = mysqli_real_escape_string($conn, $_POST['number']);
     $msg = mysqli_real_escape_string($conn, $_POST['message']);
-
-
     $select_message = mysqli_query($conn, "SELECT * FROM `contact_form` WHERE name = '$name' AND email = '$email' AND number = '$number' AND message ='$msg'") or die('query failed');
-
-
     if (mysqli_num_rows($select_message) > 0) {
     } else {
         mysqli_query($conn, "INSERT INTO `contact_form` (name,email,number,message) VALUES ('$name','$email','$number','$msg')") or die('query failed');
@@ -31,7 +34,6 @@ if (isset($_POST['send'])) {
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
-
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (isset($_POST["login"])) {
         // Xử lý đăng nhập
@@ -46,15 +48,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             if (password_verify($Password, $user['password'])) {
                 // Mật khẩu hợp lệ, đăng nhập thành công
                 $_SESSION['user_id'] = $user['ID'];
-                // echo "Đăng nhập thành công!";
-                // header("Location: dashboard.php");
+                echo "
+                    <script>
+                        alert('Đăng nhập thành công.');
+                        window.location.href = 'index.php';
+                    </script>
+                ";
+                exit();
             } else {
                 echo "<script> alert('Mật khẩu không đúng. Vui lòng thử lại.') </script>";
             }
         } else {
-            echo " <script> alert('Tài khoản không tồn tại. Vui lòng đăng ký trước.') </script>";
+            echo "<script> alert('Tài khoản không tồn tại. Vui lòng đăng ký trước.') </script>";
         }
-    } elseif (isset($_POST["signup"])) {
+    } else if (isset($_POST["signup"])) {
         // Xử lý đăng ký
         $Username = $_POST["username"];
         $Email = $_POST["email"];
@@ -68,14 +75,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             echo "<script> alert('Email đã được sử dụng. Vui lòng chọn email khác.') </script>";
         } else {
             // Thêm thông tin người dùng vào cơ sở dữ liệu
-            $hashedPassword = password_hash($Password, PASSWORD_DEFAULT); // Hash password để lưu vào cơ sở dữ liệu
+            $hashedPassword = password_hash($Password, PASSWORD_DEFAULT);
             $insertQuery = "INSERT INTO users (name, email, password) VALUES ('$Username', '$Email', '$hashedPassword')";
 
             if (mysqli_query($conn, $insertQuery)) {
-                  echo "<script>alert('Đăng ký thành công!')</script>";
+                echo "<script>alert('Đăng ký thành công!')</script>";
                 // header("Location: login.php");
             } else {
-                echo "<script>alert('Đã xảy ra lỗi khi thực hiện đăng ký: ')</script>" . mysqli_error($conn);
+                echo "<script>alert('Đã xảy ra lỗi khi thực hiện đăng ký: ' . mysqli_error($conn)) </script>";
             }
         }
     }
@@ -112,6 +119,12 @@ mysqli_close($conn);
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <script src="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.7.20/dist/sweetalert2.all.min.js
+"></script>
+    <link href="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.7.20/dist/sweetalert2.min.css
+" rel="stylesheet">
 </head>
 
 <body>
@@ -126,10 +139,8 @@ mysqli_close($conn);
         ';
             }
             ?> -->
-
     <header class="header">
         <div id="menu-btn" class="fas fa-bars"></div>
-
         <a href="#home" class="logo">THINH.</a>
 
         <nav class="navbar">
